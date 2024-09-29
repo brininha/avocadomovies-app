@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native-web";
+import { View, Text, Image } from "react-native"; // Use 'react-native' em vez de 'react-native-web'
 import styles from "./style.js";
 
 export default function Developers() {
@@ -29,4 +29,3 @@ export default function Developers() {
         </View>
     );
 };
-

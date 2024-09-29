@@ -1,6 +1,7 @@
 import { View, Text, TextInput, Pressable, Modal, FlatList, Image, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
 import styles from "./style.js";
+import { API_URL } from '../../../config';
 
 export default function Genero() {
 
@@ -10,7 +11,7 @@ export default function Genero() {
     // Tentando conexão com o banco de dados
     const getGenero = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/genero');
+            const response = await fetch(`${API_URL}/genero`);
             const json = await response.json();
             setData(json)
         } catch (error) {
@@ -37,7 +38,7 @@ export default function Genero() {
     const [generoVisible, setGeneroVisible] = useState(false);
 
     const inserir = () => {
-        fetch('http://127.0.0.1:8000/api/postGenero', {
+        fetch(`${API_URL}/api/postGenero`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

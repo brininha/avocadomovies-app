@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native-web";
+import { Text, View, Image } from "react-native";
 import styles from "./style.js";
 
 export default function Splash() {

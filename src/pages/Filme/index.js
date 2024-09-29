@@ -1,6 +1,7 @@
 import { View, Text, TextInput, Pressable, Modal, FlatList, Image, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
 import styles from "./style.js";
+import { API_URL } from '../../../config';
 
 export default function Filme() {
 
@@ -11,7 +12,7 @@ export default function Filme() {
     const [visible, setVisible] = useState(false);
 
     const inserir = () => {
-        fetch('http://127.0.0.1:8000/api/postFilme', {
+        fetch(`${API_URL}/api/postFilme`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

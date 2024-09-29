@@ -10,13 +10,15 @@ import Developers from "./src/pages/Developers";
 import Contato from './src/pages/Contato';
 import Genero from './src/pages/Genero';
 import Filme from './src/pages/Filme';
+import Locais from './src/pages/Locais';
+import Scanner from './src/pages/Scanner';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Login">
+      <Tab.Navigator initialRouteName="Home">
         <Tab.Screen name="Splash" component={Splash} options={{
           headerShown: false, 
           tabBarStyle: { display: 'none' },
@@ -58,6 +60,22 @@ export default function App() {
         }}/>
         <Tab.Screen name="Devs" component={Developers} options={{
           tabBarIcon: ({color, size}) => <Feather name='coffee' color={color} size={size}/>,
+          tabBarStyle: {backgroundColor: '#121212'},
+          headerStyle: {backgroundColor: '#121212'},
+          headerTintColor: 'white',
+          tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
+          tabBarActiveTintColor: 'white',
+        }}/>
+        <Tab.Screen name="Scanner" component={Scanner} options={{
+          tabBarIcon: ({color, size}) => <Feather name='camera' color={color} size={size}/>,
+          tabBarStyle: {backgroundColor: '#121212'},
+          headerStyle: {backgroundColor: '#121212'},
+          headerTintColor: 'white',
+          tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
+          tabBarActiveTintColor: 'white',
+        }}/>
+        <Tab.Screen name="Locais" component={Locais} options={{
+          tabBarIcon: ({color, size}) => <Feather name='map-pin' color={color} size={size}/>,
           tabBarStyle: {backgroundColor: '#121212'},
           headerStyle: {backgroundColor: '#121212'},
           headerTintColor: 'white',

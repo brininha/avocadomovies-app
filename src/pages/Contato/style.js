@@ -12,7 +12,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 20,
-        marginTop: 5, // Reduz a margem superior do título
+        marginTop: 5,
     },
     input: {
         backgroundColor: 'white',

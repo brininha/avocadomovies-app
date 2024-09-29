@@ -2,6 +2,7 @@ import { Text, View, TouchableOpacity, TextInput, Image, Modal, Pressable } from
 import styles from "./style.js";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { API_URL } from '../../../config.js';
 
 export default function Login() {
     const navigation = useNavigation();
@@ -51,7 +52,7 @@ export default function Login() {
     const [modalVisible, setModalVisible] = useState(false);
 
     const inserir = () => {
-        fetch('http://127.0.0.1:8000/api/postCliente', {
+        fetch(`${API_URL}/api/postCliente`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

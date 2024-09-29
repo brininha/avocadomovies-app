@@ -1,115 +1,115 @@
-import { Text, View, Image, Modal, FlatList, ScrollView, Pressable, ActivityIndicator } from "react-native";
+import { Text, View, Image, Modal, FlatList, Pressable, ActivityIndicator, SafeAreaView } from "react-native";
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { API_URL } from '../../../config';
+import { ScrollView } from "react-native";
 
 export default function Home() {
-
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const [visible, setVisible] = useState(false);
+    const [movie, setMovie] = useState(null);
+    const navigation = useNavigation();
 
-    // Tentando conexão com o banco de dados
+    // Array de imagens com 30 filmes
+    const images = {
+        1: require('../../../assets/images/filme1.jpg'),
+        2: require('../../../assets/images/filme2.jpg'),
+        3: require('../../../assets/images/filme3.jpg'),
+        4: require('../../../assets/images/filme4.png'),
+        5: require('../../../assets/images/filme5.jpg'),
+        6: require('../../../assets/images/filme6.jpg'),
+        7: require('../../../assets/images/filme7.jpg'),
+        8: require('../../../assets/images/filme8.jpg'),
+        9: require('../../../assets/images/filme9.jpeg'),
+        10: require('../../../assets/images/filme10.jpg'),
+        11: require('../../../assets/images/filme11.jpg'),
+        12: require('../../../assets/images/filme12.jpg'),
+        13: require('../../../assets/images/filme13.jpg'),
+        14: require('../../../assets/images/filme14.png'),
+        15: require('../../../assets/images/filme15.jpg'),
+        16: require('../../../assets/images/filme16.jpg'),
+        17: require('../../../assets/images/filme17.jpg'),
+        18: require('../../../assets/images/filme18.png'),
+        19: require('../../../assets/images/filme19.png'),
+        20: require('../../../assets/images/filme20.jpg'),
+        21: require('../../../assets/images/filme21.jpg'),
+        23: require('../../../assets/images/filme22.jpg'),
+        24: require('../../../assets/images/filme23.jpg'),
+        25: require('../../../assets/images/filme24.jpg'),
+    };
+
     const getMovies = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/filme');
+            const response = await fetch(`${API_URL}/filme`);
             const json = await response.json();
-            setData(json)
+            setData(json);
         } catch (error) {
             console.error(error);
         } finally {
-          setLoading(false);
+            setLoading(false);
         }
-    }
+    };
 
-    // Inicializa a busca por filmes após a renderização
     useEffect(() => {
         getMovies();
     }, []);
 
-    // Constante de navegação entre telas
-    const navigation = useNavigation();
-
-    // Para a tela Splash aparecer
-    const [count, setCount] = useState(0);
-    useEffect(() => {
-        if (count == 0) {
-            const navigateToSplash = () => {
-                navigation.navigate('Splash');
-            }
-            navigateToSplash();
-            setTimeout(() => {navigation.navigate('Home')}, 2000);
-            setCount(1);
-        }
-    })
-
-    const [visible, setVisible] = useState(false);
-    const [movie, setMovie] = useState(0);
-
-    function loadMovie(id) {
-        setMovie(data.find(item => item.idFilme === id));
-        console.log(movie.nomeFilme);
+    const loadMovie = (id) => {
+        const selectedMovie = data.find(item => item.idFilme === id);
+        setMovie(selectedMovie);
         setVisible(true);
-    }
+    };
 
-    const renderComingMovies = ({item}) => {
-        const url = `../../../assets/${item.capaFilme}`;
-        if (item.statusFilme == 1 || item.statusFilme == 2) {
-            return (
-                <Pressable onPress={() => loadMovie(item.idFilme)}>
-                    <Image source={{uri: url}} style={styles.imgMovie}/>
-                </Pressable>
-            )
-        }
-    }
+    const renderMovies = ({ item }) => {
+        return (
+            <Pressable onPress={() => loadMovie(item.idFilme)}>
+                <Image source={images[item.idFilme]} style={styles.imgMovie} />
+            </Pressable>
+        );
+    };
 
-    const renderMovies = ({item}) => {
-        const url = `../../../assets/${item.capaFilme}`;
-        if (item.statusFilme == 0) {
-            return (
-                <Pressable onPress={() => loadMovie(item.idFilme)}>
-                    <Image source={{uri: url}} style={styles.imgMovie}/>
-                </Pressable>
-            )
-        }
-    }
-    
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <View style={{width: '100vw'}}><Text style={styles.label}>Em breve</Text></View>
-                <View style={{width: '100vw'}}>
-                    {isLoading? <ActivityIndicator/> : (
+        <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.list}>
+                <Text style={styles.label}>Em breve</Text>
+                {isLoading ? (
+                    <ActivityIndicator />
+                ) : (
                     <FlatList
-                        data = {data}
-                        pagingEnabled
-                        keyExtractor = {({idFilme}, index) => idFilme}
-                        renderItem={renderComingMovies}
+                        data={data.filter(item => item.statusFilme == 1 || item.statusFilme == 2)}
+                        keyExtractor={({ idFilme }) => idFilme.toString()}
+                        renderItem={renderMovies}
                         horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={{backgroundColor: 'black'}}
                     />
-                    )}
-                </View>
-                <View style={{width: '100vw'}}><Text style={styles.label}>Em cartaz</Text></View>
+                )}
+                <Text style={styles.label}>Em cartaz</Text>
                 <FlatList
-                    data = {data}
-                    keyExtractor = {({idFilme}, index) => idFilme}
-                    renderItem = {renderMovies}
-                    numColumns = {2}
+                    data={data.filter(item => item.statusFilme == 0)}
+                    keyExtractor={({ idFilme }) => idFilme.toString()}
+                    renderItem={renderMovies}
+                    numColumns={2}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ alignItems: 'center', width: '100%' }}
                 />
-
-                <Modal visible={visible} animationType="fade">    
-                    <ScrollView>
+                <Modal visible={visible} animationType="fade">
+                    <View style={styles.containerModal}>
                         <Pressable onPress={() => setVisible(false)}>
-                            <Image source={require("../../../assets/images/seta.png")} style={{width: 30, height: 30, margin: 5}}/>
+                            <Image source={require("../../../assets/images/seta.png")} style={{ width: 30, height: 30, margin: 5 }} />
                         </Pressable>
-
-                        <View style={styles.containerModal}>
-                            <Image source={{uri: `../../../assets/${movie.capaFilme}`}} style={styles.imgMovie}/>
-                            <Text style={styles.movieName}>{movie.nomeFilme}</Text>
-                            <Text style={styles.description}>{movie.descFilme}</Text>
-                        </View>
-                    </ScrollView>
+                        {movie && (
+                            <>
+                                <Image source={images[movie.idFilme]} style={styles.imgMovie}/>
+                                <Text style={styles.movieName}>{movie.nomeFilme}</Text>
+                                <Text style={styles.description}>{movie.descFilme}</Text>
+                            </>
+                        )}
+                    </View>
                 </Modal>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
