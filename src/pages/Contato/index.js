@@ -11,7 +11,7 @@ export default function Contato() {
     // Tentando conexão com o banco de dados
     const getContato = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/contato`);
+            const response = await fetch(`${API_URL}/contato`);
             const json = await response.json();
             setData(json);
         } catch (error) {

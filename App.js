@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Home">
+      <Tab.Navigator initialRouteName="Login">
         <Tab.Screen name="Splash" component={Splash} options={{
           headerShown: false, 
           tabBarStyle: { display: 'none' },

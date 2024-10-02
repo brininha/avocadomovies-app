@@ -8,9 +8,8 @@ export default function Login() {
     const navigation = useNavigation();
     const [count, setCount] = useState(0);
     
-    // o useEffect garante que esse trecho de código seja executado por último
     useEffect(() => {
-        if (count == 0) {
+        if (count === 0) {
             const navigateToSplash = () => {
                 navigation.navigate('Splash');
                 setTimeout(() => {
@@ -20,7 +19,7 @@ export default function Login() {
             navigateToSplash();
         }
         setCount(1);
-    }), [];
+    }, []);
 
     const userName = "Fulano";
     const userPass = "123";
@@ -82,12 +81,12 @@ export default function Login() {
             <View style={styles.containerB}>
                 <View style={styles.containerlogin}>
                     <TextInput placeholder="Nome de usuário" style={customStyle[0]} value={user} onChangeText={setUser} onFocus={() => setUserFocus(true)} onBlur={() => setUserFocus(false)}/>
-                    <TextInput placeholder="Senha" secureTextEntry='true' style={customStyle[1]} value={pass} onChangeText={setPass} onFocus={() => setPassFocus(true)} onBlur={() => setPassFocus(false)}/>
+                    <TextInput placeholder="Senha" secureTextEntry={true} style={customStyle[1]} value={pass} onChangeText={setPass} onFocus={() => setPassFocus(true)} onBlur={() => setPassFocus(false)}/>
                     <Text style={{color: cor}}>Usuário e/ou senha incorreto(s)</Text>
                 </View>
                 <View style={styles.container}>
                     <TouchableOpacity style={styles.button} onPress={()=>{logar()}}>
-                        <Text style={{color: 'white', fontSize: '1rem'}}>Entrar</Text>
+                        <Text style={{color: 'white', fontSize: 16}}>Entrar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <Text style={{color: '#008ff5', padding: 10}}>Fazer cadastro</Text>
@@ -105,7 +104,7 @@ export default function Login() {
                     <TextInput placeholder="E-mail" style={styles.input} onChangeText={text => setEmail(text)}/>
                     <TextInput placeholder="Telefone" style={styles.input} onChangeText={text => setTelefone(text)}/>
                     <TextInput placeholder="Senha" style={styles.input} onChangeText={text => setSenha(text)}/>
-                    <Pressable style={{backgroundColor: '#252627', padding: 15, borderRadius: 30, width: '80vw', textAlign: 'center', margin:15}} onPress={() => inserir()}><Text style={{color: 'white', fontSize: '1rem'}}>Enviar</Text></Pressable>
+                    <Pressable style={{backgroundColor: '#252627', padding: 15, borderRadius: 30, textAlign: 'center', margin:15}} onPress={() => inserir()}><Text style={{color: 'white', fontSize: 16}}>Enviar</Text></Pressable>
                 </View>
             </Modal>
 
