@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -18,7 +18,8 @@ export default StyleSheet.create({
         padding: 15,
         letterSpacing: 2,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     imgMovie: {
         width: 160,
@@ -34,5 +35,5 @@ export default StyleSheet.create({
         fontSize: 16,
         padding: 30,
         textAlign: 'justify',
-    },
+    }
 });

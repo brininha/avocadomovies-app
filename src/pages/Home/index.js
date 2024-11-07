@@ -72,23 +72,9 @@ export default function Home() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.list}>
-                <Text style={styles.label}>Em breve</Text>
-                {isLoading ? (
-                    <ActivityIndicator />
-                ) : (
-                    <FlatList
-                        data={data.filter(item => item.statusFilme == 1 || item.statusFilme == 2)}
-                        keyExtractor={({ idFilme }) => idFilme.toString()}
-                        renderItem={renderMovies}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{backgroundColor: 'black'}}
-                    />
-                )}
-                <Text style={styles.label}>Em cartaz</Text>
+                <Text style={styles.label}>Filmes em cartaz</Text>
                 <FlatList
-                    data={data.filter(item => item.statusFilme == 0)}
+                    data={data.filter(item => item.excluido == 0)}
                     keyExtractor={({ idFilme }) => idFilme.toString()}
                     renderItem={renderMovies}
                     numColumns={2}
@@ -109,7 +95,6 @@ export default function Home() {
                         )}
                     </View>
                 </Modal>
-            </ScrollView>
         </SafeAreaView>
     );
 }
