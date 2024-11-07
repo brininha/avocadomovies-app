@@ -1,47 +1,34 @@
-import { StyleSheet } from "react-native-web";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
-        backgroundColor: 'white',
-        width: '100%',
-    },
-    containerA: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        width: '100%',
-    },
-    containerB: {
-        flex: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#252627',
-        width: '100%',
-    },
-    containerhead: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#252627',
-        borderBottomRightRadius: 50,
+        backgroundColor: 'black',
         width: '100%',
     },
     containerlogin: {
-        flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
         borderTopLeftRadius: 50,
-        width: '100%'
+        borderTopRightRadius: 50,
+        width: '100%',
+        minHeight: '60%',
+        padding: 20
     },
     title: {
         fontSize: 32,
         color: 'black',
-        padding: 10
+        padding: 10,
+        width: '80%',
+        fontFamily: 'Poppins-Bold'
+    },
+    text: {
+        fontSize: 16,
+        padding: 10,
+        width: '80%',
+        fontFamily: 'Poppins'
     },
     input: {
         margin: 15,
@@ -49,15 +36,11 @@ export default StyleSheet.create({
         borderRadius: 30,
         backgroundColor: 'ghostwhite',
         color: 'rgba(0,0,0,0.8)',
-        borderWidth: 0.1,
-        borderColor: 'rgba(0,0,0,0.3)',
         fontSize: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
         elevation: 5,
-        width: '80%'
+        width: '80%',
+        boxShadow: '0px 2px 3.84px rgba(0, 0, 0, 0.1)',
+        fontFamily: 'Poppins'
     },
     focusedInput: {
         margin: 15,
@@ -65,37 +48,31 @@ export default StyleSheet.create({
         borderRadius: 30,
         backgroundColor: 'ghostwhite',
         color: 'rgba(0,0,0,0.8)',
-        borderWidth: 1,
-        borderColor: 'black',
         outlineStyle: 'none',
         fontSize: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
         elevation: 5,
-        width: '80%'
+        width: '80%',
+        borderColor: 'rgba(0,0,0,0.3)',
+        borderWidth: 1
     },
     button: {
         backgroundColor: '#252627',
         padding: 15,
+        marginHorizontal: 15,
         borderRadius: 30,
         width: '80%',
-        textAlign: 'center'
     },
-    img: {
-        width: 200,
-        height: 200
+    btnText: {
+        color: 'white', 
+        fontSize: 16,
+        fontFamily: 'Poppins',
+        textAlign: 'center',
     },
-    containermodal: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    message: {
-        backgroundColor: 'rgba(53, 163, 2, 0.8)',
+    link: {
+        fontSize: 16,
         padding: 10,
-        color: 'white',
-        borderRadius: 10,
-    },
+        width: '80%',
+        fontFamily: 'Poppins',
+        color: 'royalblue'
+    }
 });
