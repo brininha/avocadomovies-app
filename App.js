@@ -12,14 +12,23 @@ import Genero from './src/pages/Genero';
 import Filme from './src/pages/Filme';
 import Locais from './src/pages/Locais';
 import Scanner from './src/pages/Scanner';
+import Start from './src/pages/Start';
+import Cadastro from './src/pages/Cadastro';
+import Charts from './src/pages/Charts';
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Login">
+      <Tab.Navigator initialRouteName="Home">
         <Tab.Screen name="Splash" component={Splash} options={{
+          headerShown: false, 
+          tabBarStyle: { display: 'none' },
+          tabBarIcon: ({ color, size }) => null,
+          tabBarLabel: () => null
+        }} />
+        <Tab.Screen name="Cadastro" component={Cadastro} options={{
           headerShown: false, 
           tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color, size }) => null,
@@ -74,6 +83,14 @@ export default function App() {
           tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
           tabBarActiveTintColor: 'white',
         }}/>
+        <Tab.Screen name="Gráficos" component={Charts} options={{
+          tabBarIcon: ({color, size}) => <Feather name='pie-chart' color={color} size={size}/>,
+          tabBarStyle: {backgroundColor: '#121212'},
+          headerStyle: {backgroundColor: '#121212'},
+          headerTintColor: 'white',
+          tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)',
+          tabBarActiveTintColor: 'white',
+        }}/>
         <Tab.Screen name="Locais" component={Locais} options={{
           tabBarIcon: ({color, size}) => <Feather name='map-pin' color={color} size={size}/>,
           tabBarStyle: {backgroundColor: '#121212'},
@@ -83,6 +100,12 @@ export default function App() {
           tabBarActiveTintColor: 'white',
         }}/>
         <Tab.Screen name="Login" component={Login} options={{
+          headerShown: false, 
+          tabBarStyle: { display: 'none' },
+          tabBarIcon: ({ color, size }) => null,
+          tabBarLabel: () => null
+        }}/>
+        <Tab.Screen name="Start" component={Start} options={{
           headerShown: false, 
           tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color, size }) => null,

@@ -28,10 +28,10 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "eas": {
-        "projectId": "16459940-8b3f-4487-a5fb-1026666767b5",
-        "apiUrl": "https://4c6d-2804-7f0-b900-12f7-f5b5-f839-6bca-5a1a.ngrok-free.app/api"
-      }
-    }
+      "apiUrl": "https://dd8e-2804-7f0-b900-3c42-fd35-cace-b5a7-d3eb.ngrok-free.app"
+    },
+    "plugins": [
+      "expo-font"
+    ]
   }
 }
